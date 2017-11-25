@@ -1,0 +1,188 @@
+"  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
+" ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
+" ███    ███ ███▌ ███   ███   ███
+" ███    ███ ███▌ ███   ███   ███
+" ███    ███ ███▌ ███   ███   ███
+" ███    ███ ███  ███   ███   ███
+" ███    ███ ███  ███   ███   ███
+"  ▀██████▀  █▀    ▀█   ███   █▀
+
+" @modifiedBy - Mandeep Singh Gill (mandeep6ill)
+" Based on the ThoughtBot & Dorian base configuration but customized to my needs
+
+call plug#begin('~/.vim/bundle')
+
+" List Plugins =====================================
+
+" Dependencies:
+
+" Vim sugar for the UNIX shell commands that need it the most.
+Plug 'tpope/vim-eunuch'
+
+" git awesomeness
+Plug 'tpope/vim-fugitive'
+
+" allow (non-native) plugins to use the . command
+Plug 'tpope/vim-repeat'
+
+" Surround text with closures
+Plug 'tpope/vim-surround'
+
+" session management
+" Plug 'wting/gitsessions.vim'
+
+" " Comment out code easily
+" Plug 'vim-scripts/tComment'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
+
+" NERDTree... tree explorer for vim
+Plug 'scrooloose/nerdtree'
+
+" auto-generate ctags on save
+" Plug 'ludovicchabant/vim-gutentags'
+
+" Searching:
+  " highlights all search results and allows tabbing between them
+  Plug 'haya14busa/incsearch.vim'
+
+  " Sublime text like search results
+  Plug 'dyng/ctrlsf.vim'
+
+
+" Align Code:
+  " auto sorts ascii tables and aligns code neatly
+  Plug 'godlygeek/tabular'
+
+  " same as tabular but by Junegunn
+  Plug 'junegunn/vim-easy-align'
+
+" Visual git gutter
+Plug 'airblade/vim-gitgutter'
+
+" Snippets:
+  " ES2015 code snippets (Optional)
+  Plug 'epilande/vim-es2015-snippets'
+
+  " React code snippets
+  Plug 'epilande/vim-react-snippets'
+
+  " modern snippets for vim
+  Plug 'SirVer/ultisnips'
+
+  " vim snippets for UltiSnips ...
+  Plug 'honza/vim-snippets'
+
+" Ack vim integration
+Plug 'mileszs/ack.vim'
+
+" JavaScript:
+  " JavaScript support (required by vim-jsx)
+  Plug 'pangloss/vim-javascript'
+
+  " JSX support for react components
+  Plug 'mxw/vim-jsx'
+
+  " Automatically import js modules
+  Plug 'Galooshi/vim-import-js'
+
+  " Vim plugin for Flow (js static type checker)
+  Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript-jsx'] }
+
+  " JSON manipulation
+  Plug 'tpope/vim-jdaddy', { 'for': 'json' }
+
+" Vim Buffer Manipulation:
+
+  " Wipe and delete buffers
+  Plug 'jbranchaud/vim-bdubs'
+
+  " quick buffer switching
+  Plug 'jlanzarotta/bufexplorer'
+
+" Indent lines (visual indication)
+Plug 'Yggdroot/indentLine'
+
+" ColorSchemes:
+  " gruvbox theme
+  Plug 'morhetz/gruvbox'
+
+  " Seoul 256 by Junegunn
+  " Plug 'junegunn/seoul256.vim'
+
+  " Dracula theme
+  Plug 'dracula/vim', { 'as': 'dracula' }
+
+" highlight colors in css
+Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass'] }
+
+" highlight open and close tabs
+Plug 'valloric/matchtagalways'
+
+" Autocomplete:
+  " tab completion (autocomplete) for insert
+  Plug 'ervandew/supertab'
+
+" Gitv - for browsing a file's history in git
+Plug 'gregsexton/gitv'
+
+" A better Gitv:
+Plug 'junegunn/gv.vim'
+
+" Improve in buffer search
+" Plug 'junegunn/vim-slash'
+
+" Hashrocket keybindings and more
+Plug 'hashrocket/vim-hashrocket'
+
+" Convert code to multiline
+Plug 'AndrewRadev/splitjoin.vim'
+
+" fancy vim start page
+Plug 'mhinz/vim-startify'
+
+" copy code as rtf
+" Plug 'zerowidth/vim-copy-as-rtf'
+
+" Writing:
+  " distraction free writing (like iA Writer)
+  " Plug 'laktek/distraction-free-writing-vim'
+
+  " Distraction free writing in vim
+  Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+  " Highlight current paragraph (works well with goyo)
+  Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+
+" fzf greatness (fuzzy finding)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
+" peek at registers and macros before running them
+Plug 'junegunn/vim-peekaboo'
+
+" Auto close matching pairs {} \"\", etc..
+Plug 'jiangmiao/auto-pairs'
+
+" Airline - like powerline but light as air
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Auto format code
+Plug 'sbdchd/neoformat'
+
+" OWN PLUGINS: --------------------------- {{{
+" automatic bulleted lists
+Plug 'dkarter/bullets.vim'
+
+" snip helpers - assorted functions for snippets
+Plug 'dkarter/sniphelpers.vim'
+" /OWN PLUGINS --------------------------- }}}
+
+" ==================================================
+
+if filereadable(expand('~/.vimrc.bundles.local'))
+  source ~/.vimrc.bundles.local
+endif
+
+call plug#end()
