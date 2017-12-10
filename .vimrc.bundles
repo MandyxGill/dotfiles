@@ -14,6 +14,11 @@ call plug#begin('~/.vim/bundle')
 
 " List Plugins =====================================
 
+" Additional:
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
+
 " Dependencies:
 
 " Vim sugar for the UNIX shell commands that need it the most.

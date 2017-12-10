@@ -15,6 +15,7 @@
   set nocompatible           " vim, not vi
   syntax on                  " syntax highlighting
   filetype plugin indent on  " try to recognize filetypes and load rel' plugins
+  let g:livepreview_previewer = 'mupdf'
 
 "  Behavior Modification ----------------------  {{{
 
@@ -28,7 +29,6 @@
   " set t_BE=
 
   set cursorline
-  set hlsearch
   set number relativenumber
   set background=dark   " tell vim what the background color looks like
   set backspace=2       " Backspace deletes like most programs in insert mode
