@@ -1,0 +1,89 @@
+// vim:ts=4:sw=4:et
+{
+    // splith split container with 1 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.8,
+    "type": "con",
+    "nodes": [
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 1,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 938,
+                       "width": 1522,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "termite",
+                    "percent": 0.3,
+                    "swallows": [
+                       {
+                       // "class": "^Termite$",
+                       // "instance": "^termite$",
+                       // "title": "^termite$",
+                       // "transient_for": "^$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 1080,
+                       "width": 1920,
+                       "x": 960,
+                       "y": 540
+                    },
+                    "name": "So_High_Official_Music_Video_Sidhu_Moose_Wala_ft._BYG_BYRD_Humble_Music-GgmFC8y8q3k.mkv - mpv",
+                    "percent": 0.7,
+                    "swallows": [
+                       {
+                       // "class": "^mpv$",
+                       // "instance": "^gl$",
+                       // "title": "^So_High_Official_Music_Video_Sidhu_Moose_Wala_ft\\._BYG_BYRD_Humble_Music\\-GgmFC8y8q3k\\.mkv\\ \\-\\ mpv$",
+                       // "transient_for": "^$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "border": "pixel",
+    "current_border_width": 0,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 938,
+       "width": 1522,
+       "x": 0,
+       "y": 0
+    },
+    "name": "mandy@mandy-arch:~",
+    "percent": 0.2,
+    "swallows": [
+       {
+       // "class": "^Termite$",
+       // "instance": "^termite$",
+       // "title": "^mandy\\@mandy\\-arch\\:\\~$",
+       // "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
