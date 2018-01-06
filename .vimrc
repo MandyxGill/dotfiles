@@ -25,7 +25,14 @@
   " alias for leader key
     nmap <space> \
 
-  " disable bracketed paste
+" Split line (sister to [J]oin lines)
+" The normal use of S is covered by cc, so don't worry about shadowing it.
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+" Source
+vnoremap ,S y:@"<CR>
+nnoremap ,S ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
+
+" disable bracketed paste
   " set t_BE=
 
   set cursorline
@@ -66,7 +73,7 @@
     set wildmode=list:longest,list:full " configure wildmenu
 
   " text appearance
-    set textwidth=80
+    " set textwidth=80
     set nowrap                          " nowrap by default
     set list                            " show invisible characters
     set listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
@@ -145,6 +152,15 @@ let g:UltiSnipsListSnippets                = '<c-.>'
 let g:UltiSnipsExpandTrigger               = '<tab>'
 let g:UltiSnipsJumpForwardTrigger          = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger         = '<s-tab>'
+
+" inoremap <Tab> <c-r>=UltiSnips#ExpandSnippet()<cr>
+let g:UltiSnipsSnippetsDir="~/.vim/Ultisnips"
+
+
+" let g:UltiSnipsListSnippets                = '<c-.>'
+" let g:UltiSnipsExpandTrigger               = '<tab>'
+" let g:UltiSnipsJumpForwardTrigger          = '<c-b>'
+" let g:UltiSnipsJumpBackwardTrigger         = '<c-z>'
 
 " :UltiSnipsEdit opens in a vertical split
 let g:UltiSnipsEditSplit                   = 'vertical'

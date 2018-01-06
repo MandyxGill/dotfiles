@@ -17,6 +17,7 @@ call plug#begin('~/.vim/bundle')
 " Additional:
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'christoomey/vim-tmux-navigator'
 
 
 " Dependencies:
@@ -70,7 +71,7 @@ Plug 'airblade/vim-gitgutter'
   Plug 'epilande/vim-es2015-snippets'
 
   " React code snippets
-  Plug 'epilande/vim-react-snippets'
+  " Plug 'epilande/vim-react-snippets'
 
   " modern snippets for vim
   Plug 'SirVer/ultisnips'
