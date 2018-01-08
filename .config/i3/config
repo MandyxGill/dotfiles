@@ -13,8 +13,9 @@
 #Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
-gaps inner 25
-gaps outer 15
+#gaps inner 25
+#gaps outer 15
+#font -*-dina-medium-r-*-*-8-*-*-*-*-*-*-*
 font pango:mono 18 
 set $mod Mod4
 set $super Mod1
@@ -44,6 +45,13 @@ exec --no-startup-id python ~/.config/Scripts/shortcuts.py
 exec --no-startup-id ~/.config/Scripts/screen.sh v
 #Launch Polybar where appropriate:
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+# Lemonbar top & bottom
+#exec_always --no-startup-id killall lemonbar; sh ~/.config/i3-test/panel-top &
+#exec_always --no-startup-id killall lemonbar; sh ~/.config/i3-test/panel-bottom &
+
+#exec --no-startup-id conky -c ~/.config/panel/empty_conky
+#exec --no-startup-id ~/.config/panel/bar_config
+
 #Start the offlineimap daemon;
 exec --no-startup-id killall python ~/.config/Scripts/offlineimap-daemon.py
 exec --no-startup-id python ~/.config/Scripts/offlineimap-daemon.py
@@ -113,26 +121,25 @@ set $prev2 --no-startup-id mpc prev
 #set $beg --no-startup-id cmus-remote -k 00:00:00
 
 #FOR ALSA/AMIXER
-#set $inc --no-startup-id amixer sset Master 2%+
-#set $biginc --no-startup-id amixer sset Master 5%+
-#set $dec --no-startup-id amixer sset Master 2%-
-#set $bigdec --no-startup-id amixer sset Master 5%-
-#set $mute --no-startup-id amixer sset Master toggle
-#set $truemute --no-startup-id amixer sset Master mute
-#set $screencast  --no-startup-id bash ~/.config/Scripts/screencast_alsa.sh
-#set $audio --no-startup-id bash ~/.config/Scripts/audio_alsa.sh
+set $inc --no-startup-id amixer sset PCM 2%+
+set $biginc --no-startup-id amixer sset PCM 5%+
+set $dec --no-startup-id amixer sset PCM 2%-
+set $bigdec --no-startup-id amixer sset PCM 5%-
+set $mute --no-startup-id amixer sset PCM toggle
+set $truemute --no-startup-id amixer sset PCM mute
+set $screencast  --no-startup-id bash ~/.config/Scripts/screencast_alsa.sh
+set $audio --no-startup-id bash ~/.config/Scripts/audio_alsa.sh
 
 #For PULSEAUDIO/PAMIXER
-set $inc --no-startup-id pamixer --allow-boost -i 5
-set $biginc --no-startup-id pamixer --allow-boost -i 15
-set $dec --no-startup-id pamixer --allow-boost -d 5
-set $bigdec --no-startup-id pamixer --allow-boost -d 15
-set $mute --no-startup-id pamixer --allow-boost -t
-set $micmute --no-startup-id pamixer --allow-boost -t
-set $truemute --no-startup-id pamixer -m
-set $screencast  --no-startup-id bash ~/.config/Scripts/screencast_pulse.sh
-set $audio --no-startup-id bash ~/.config/Scripts/audio_pulse.sh
-
+#set $inc --no-startup-id pamixer --allow-boost -i 5
+#set $biginc --no-startup-id pamixer --allow-boost -i 15
+#set $dec --no-startup-id pamixer --allow-boost -d 5
+#set $bigdec --no-startup-id pamixer --allow-boost -d 15
+#set $mute --no-startup-id pamixer --allow-boost -t
+#set $micmute --no-startup-id pamixer --allow-boost -t
+#set $truemute --no-startup-id pamixer -m
+#set $screencast  --no-startup-id bash ~/.config/Scripts/screencast_pulse.sh
+#set $audio --no-startup-id bash ~/.config/Scripts/audio_pulse.sh
 
 ###---Dropdown/Scratchpad Windows---###
 #First I have a tmux window used for background scripts.
@@ -275,27 +282,34 @@ bindsym $mod+slash		split vertical ;; exec $term
 bindsym $mod+Shift+slash	kill
 bindsym $mod+backslash		workspace back_and_forth
 
-#set $ws1 "1: "
-#set $ws2 "2: "
-#set $ws3 "3: "
-#set $ws4 "4: "
-#set $ws5 "5: "
-#set $ws6 "6: "
-#set $ws7 "7: "
-#set $ws8 "8: "
-#set $ws9 "9: "
-#set $ws10 "10: "
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+#set $ws1 "1"
+#set $ws2 "2"
+#set $ws3 "3"
+#set $ws4 "4"
+#set $ws5 "5"
+#set $ws6 "6"
+#set $ws7 "7"
+#set $ws8 "8"
+#set $ws9 "9"
+#set $ws10 "10"
+
+#set $ws1 mail
+#set $ws2 web
+#set $ws3 code
+#set $ws4 media
+#set $ws5 gimp
+#set $ws6 focus
 
 # switch to workspace
 bindsym $mod+1		workspace $ws1
