@@ -9,33 +9,52 @@
 ;=====================================================
 
 [colors]
-color0= #1b1918
-color8= #766e6b
-color1= #f22c40
-color9= #f22c40
-color2= #5ab738
-color10= #5ab738
-color3= #d5911a
-color11= #d5911a
-color4= #407ee7
-color12= #407ee7
-color5= #6666ea
-color13= #6666ea
-color6= #00ad9c
-color14= #00ad9c
-color7= #a8a19f
-color15= #f1efee
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #181818
+color8  = #585858
+color7  = #d8d8d8
+color15 = #f8f8f8
+
+# Red
+color1  = #ab4642
+color9  = #ab4642
+
+# Green
+color2  = #a1b56c
+color10 = #a1b56c
+
+# Yellow
+color3  = #f7ca88
+color11 = #f7ca88
+
+# Blue
+color4  = #7cafc2
+color12 = #7cafc2
+
+# Purple
+color5  = #ba8baf
+color13 = #ba8baf
+
+# Teal
+color6  = #86c1b9
+color14 = #86c1b9
+
+# Extra colors
+color16 = #dc9656
+color17 = #a16946
+color18 = #282828
+color19 = #383838
+color20 = #b8b8b8
+color21 = #e8e8e8
 
 background = ${colors.color0}
-;background = #000
 background-alt = #444
 foreground = ${colors.color7}
-;foreground = #dfdfdf
 foreground-alt = #555
 primary = ${colors.color3}
-;primary = ${colors.color3}
 secondary = ${colors.color5}
-;secondary = #e60053
 alert = #bd2c40
 col = #00f
 ;fg = ${colors.color7}
@@ -46,7 +65,8 @@ col = #00f
 ;monitor = ${env:MONITOR}
 monitor = ${env:MONITOR:LVDS-1}
 width = 100%
-height = 24
+height = 50
+; height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 ;radius = 6.0
@@ -67,29 +87,18 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
 
-; font-0 = mono:pixelsize=11;1
-font-0 = mono:size=21;1
-; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-1 = unifont:fontformat=truetype:size=22:antialias=false;0
-; font-2 = Wuncon Siji:pixelsize=11;1
+font-0 = InconsolataforPowerline:size=20;1
+font-1 = InconsolataforPowerline:fontformat=truetype:size=20:antialias=false;0
 font-2 = Wuncon Siji:size=21;1
 
 modules-left = i3 mpd
-#modules-center = mpd
-modules-right = home filesystem volume wlan eth battery temperature date powermenu
+; modules-center = date
+modules-right = memory cpu home filesystem volume wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 0
 ;tray-transparent = true
 ;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -238,18 +247,21 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "CPU "
+; format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.color1}
+format-underline = ${colors.color2}
 label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "RAM "
+; format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.color6}
-label = %percentage_used%%
+; label = %percentage_used%%
+label = %gb_used%/%gb_total%
 
 [module/wlan]
 type = internal/network
@@ -295,18 +307,15 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = " %a, %b %d, %Y"
-;date-alt = " %a, %b %d, %Y at %I:%M%p"
+date = "%a, %b %d, %Y"
 ;date-alt = " %Y-%m-%d"
 
-time = " at %I:%M%p"
+time = "- %I:%M %p"
 ;time-alt = %H:%M:%S
 ;time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.color12}
-;format-underline = #0a6cf5
+; format-prefix = 
+; format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.color6}
 
 label = %date% %time%
 
@@ -425,7 +434,3 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-
-dpi = 192
-tray-scale = right
-tray-maxsize = 50 
