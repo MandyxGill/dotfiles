@@ -11,109 +11,161 @@
 " Based on the ThoughtBot & Dorian base configuration but customized to my needs
 
 " General settings
-  scriptencoding utf-8      " allow emojis in vimrc
-  set nocompatible           " vim, not vi
-  syntax on                  " syntax highlighting
-  filetype plugin indent on  " try to recognize filetypes and load rel' plugins
-  let g:livepreview_previewer = 'mupdf'
+scriptencoding utf-8      " allow emojis in vimrc
+set nocompatible           " vim, not vi
+syntax on                  " syntax highlighting
+filetype plugin indent on  " try to recognize filetypes and load rel' plugins
+let g:livepreview_previewer = 'mupdf'
 
 "  Behavior Modification ----------------------  {{{
 
-  " set leader key
-    let g:mapleader="\\"
+" set leader key
+" Leader
+let mapleader = ","
+let maplocalleader = "\\"
 
-  " alias for leader key
-    nmap <space> \
+set cursorline
+set number relativenumber
+set background=dark   " tell vim what the background color looks like
+set backspace=2       " Backspace deletes like most programs in insert mode
+set history=200       " how many : commands to save in history
+set ruler             " show the cursor position all the time
+set showcmd           " display incomplete commands
+set incsearch         " do incremental searching
+set laststatus=2      " Always display the status line
+set autowrite         " Automatically :write before running commands
+set ignorecase        " ignore case in searches
+set smartcase         " will use case sensitive if capital letter present or \C
+set magic             " Use 'magic' patterns (extended regular expressions).
+" set guioptions=       " remove scrollbars on macvim
+set noshowmode        " don't show mode as airline already does
+set showcmd           " show any commands
+set foldmethod=manual " set folds by syntax of current language
 
-" Split line (sister to [J]oin lines)
-" The normal use of S is covered by cc, so don't worry about shadowing it.
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-" Source
-vnoremap ,S y:@"<CR>
-nnoremap ,S ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
+set tabstop=2         " Softtabs or die! use 2 spaces for tabs.
+set shiftwidth=2      " Number of spaces to use for each step of (auto)indent.
+set expandtab         " insert tab with right amount of spacing
+set shiftround        " Round indent to multiple of 'shiftwidth' set ttyfast           " should make scrolling faster set lazyredraw        " should make scrolling faster 
 
-" disable bracketed paste
-  " set t_BE=
+" wildmenu
+set wildmenu                        " enable wildmenu
+set wildmode=list:longest,list:full " configure wildmenu
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=migrations                       " Django migrations
+set wildignore+=*.pyc                            " Python byte code
 
-  set cursorline
-  set number relativenumber
-  set background=dark   " tell vim what the background color looks like
-  set backspace=2       " Backspace deletes like most programs in insert mode
-  set history=200       " how many : commands to save in history
-  set ruler             " show the cursor position all the time
-  set showcmd           " display incomplete commands
-  set incsearch         " do incremental searching
-  set laststatus=2      " Always display the status line
-  set autowrite         " Automatically :write before running commands
-  set ignorecase        " ignore case in searches
-  set smartcase         " will use case sensitive if capital letter present or \C
-  set magic             " Use 'magic' patterns (extended regular expressions).
-  " set guioptions=       " remove scrollbars on macvim
-  set noshowmode        " don't show mode as airline already does
-  set showcmd           " show any commands
-  set foldmethod=manual " set folds by syntax of current language
 
-  set tabstop=2         " Softtabs or die! use 2 spaces for tabs.
-  set shiftwidth=2      " Number of spaces to use for each step of (auto)indent.
-  set expandtab         " insert tab with right amount of spacing
-  set shiftround        " Round indent to multiple of 'shiftwidth'
+" text appearance
+" set textwidth=80
+set nowrap                          " nowrap by default
+set list                            " show invisible characters
+set listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 
-  if !has('nvim')       " does not work on neovim
-    set termguicolors   " enable true colors
-  end
+" Numbers
+set number
+set numberwidth=1
 
-  set ttyfast           " should make scrolling faster
-  set lazyredraw        " should make scrolling faster
+" Backups
 
-  " visual bell for errors
-    " set visualbell
+set backup                        " enable backups
+set noswapfile                    " it's 2013, Vim.
 
-  " wildmenu
-    set wildmenu                        " enable wildmenu
-    set wildmode=list:longest,list:full " configure wildmenu
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
 
-  " text appearance
-    " set textwidth=80
-    set nowrap                          " nowrap by default
-    set list                            " show invisible characters
-    set listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
-  " Numbers
-    set number
-    set numberwidth=1
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
-  " set where swap file and undo/backup files are saved
-    " set backupdir=~/.vim/tmp,.
-    " set directory=~/.vim/tmp,.
-    " set undodir=~/.vim/tmp,.
+" Always use vertical diffs
+set diffopt+=vertical
 
-  " Open new split panes to right and bottom, which feels more natural
-    set splitbelow
-    set splitright
+" set shell to bash
+set shell=/bin/bash
 
-  " Always use vertical diffs
-    set diffopt+=vertical
+" highlight fenced code blocks in markdown
+let g:markdown_fenced_languages = [
+      \ 'html',
+      \ 'vim',
+      \ 'js=javascript',
+      \ 'json',
+      \ 'python',
+      \ 'bash=sh'
+      \ ]
 
-  " set shell to bash
-    set shell=/bin/bash
+" custom settings (clean up later)
 
-  " highlight fenced code blocks in markdown
-  let g:markdown_fenced_languages = [
-        \ 'html',
-        \ 'elm',
-        \ 'vim',
-        \ 'js=javascript',
-        \ 'json',
-        \ 'python',
-        \ 'ruby',
-        \ 'elixir',
-        \ 'sql',
-        \ 'bash=sh'
-        \ ]
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone
 
-  " enable folding in bash files
-    let g:sh_fold_enabled=1
+" Save when losing focus
+au FocusLost * :silent! wall
+
+" show trailing spaces in normal mode
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:⌴
+    au InsertLeave * :set listchars+=trail:⌴
+augroup END
+
+" Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+" Abbreviations ----------------------------------------------------------- {{{
+" to use inside insert mode just write the abbrev and press space
+
+function! EatChar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunction
+
+function! MakeSpacelessIabbrev(from, to)
+    execute "iabbrev <silent> ".a:from." ".a:to."<C-R>=EatChar('\\s')<CR>"
+endfunction
+function! MakeSpacelessBufferIabbrev(from, to)
+    execute "iabbrev <silent> <buffer> ".a:from." ".a:to."<C-R>=EatChar('\\s')<CR>"
+endfunction
+
+call MakeSpacelessIabbrev('gh/',  'http://github.com/')
+call MakeSpacelessIabbrev('ghm/', 'http://github.com/mandeep6ill/')
+
+iabbrev ldis ಠ_ಠ
+iabbrev lsad ಥ_ಥ
+iabbrev lhap ಥ‿ಥ
+iabbrev lmis ಠ‿ಠ
+
+iabbrev todo TODO
+
+iabbrev m6@ mandeep6ill@gmail.com
+iabbrev mg@ mandeepgill.iitkgp@gmail.com
 " }}}
+
 
 "  Plugin Modifications (BEFORE loading bundles) ----- {{{
 
@@ -265,8 +317,34 @@ end
 " ----------------------------------------------------------------------------
 " NERDTree
 " ----------------------------------------------------------------------------
+noremap  <F2> :NERDTreeToggle<cr>
+inoremap <F2> <esc>:NERDTreeToggle<cr>
+augroup ps_nerdtree
+    au!
+
+    au Filetype nerdtree setlocal nolist
+    au Filetype nerdtree nnoremap <buffer> H :vertical resize -10<cr>
+    au Filetype nerdtree nnoremap <buffer> L :vertical resize +10<cr>
+    " au Filetype nerdtree nnoremap <buffer> K :q<cr>
+augroup END
+
+let NERDTreeHighlightCursorline = 1
+let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
+                    \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
+                    \ '.*\.o$', 'db.db', 'tags.bak', '.*\.pdf$', '.*\.mid$',
+                    \ '^tags$',
+                    \ '^.*\.meta$',
+                    \ '^.*\.fasl$',
+                    \ '^.*\.dx64fsl$',
+                    \ '.*\.bcf$', '.*\.blg$', '.*\.fdb_latexmk$', '.*\.bbl$', '.*\.aux$', '.*\.run.xml$', '.*\.fls$',
+                    \ '.*\.midi$']
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDChristmasTree = 1
+let NERDTreeChDirMode = 2
+let NERDTreeMapJumpFirstChild = 'gK'
 let g:NERDTreeIgnore = ['\.vim$', '\~$', '\.beam', 'elm-stuff']
-let g:NERDTreeShowHidden = 1
 
 " ----------------------------------------------------------------------------
 " goyo.vim + limelight.vim
@@ -309,9 +387,8 @@ endif
 
 " UI Customizations --------------------------------{{{
 
-  " default color scheme
-  colorscheme dracula
 
+" let s:background_color="NONE"
   " when on dracula
   let g:limelight_conceal_ctermfg = 59
   let g:limelight_conceal_guifg = '#43475b'
@@ -482,3 +559,199 @@ augroup END
     map g/ <Plug>(incsearch-stay)
 
 " --------------------- Key Mappings ---------------------------- }}}
+
+" Kill window
+nnoremap K :q<cr>
+
+" Save
+nnoremap s :w<cr>
+
+" Man
+" nnoremap M K
+"
+" Clean up windows
+nnoremap - :wincmd =<cr>
+
+" Toggle line numbers
+nnoremap <leader>n :setlocal number! relativenumber!<cr>
+
+" Sort lines
+nnoremap <leader>s vip:!sort -f<cr>
+vnoremap <leader>s :!sort -f<cr>
+
+" Tab
+nnoremap <leader>( :tabprev<cr>
+nnoremap <leader>) :tabnext<cr>
+
+" Wrap
+nnoremap <leader>W :set wrap!<cr>
+
+" Inserting blank lines
+" I never use the default behavior of <cr> and this saves me a keystroke...
+nnoremap <cr> o<esc>
+
+" Yank to end of line
+nnoremap Y y$
+
+" Reselect last-pasted text
+nnoremap gv `[v`]
+
+" Rebuild Ctags (mnemonic RC -> CR -> <cr>)
+nnoremap <leader><cr> :silent !myctags >/dev/null 2>&1 &<cr>:redraw!<cr>
+
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
+" Select entire buffer
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+
+" "Uppercase word" mapping.
+"
+" This mapping allows you to press <c-u> in insert mode to convert the current
+" word to uppercase.  It's handy when you're writing names of constants and
+" don't want to use Capslock.
+"
+" To use it you type the name of the constant in lowercase.  While your
+" cursor is at the end of the word, press <c-u> to uppercase it, and then
+" continue happily on your way:
+"
+"                            cursor
+"                            v
+"     max_connections_allowed|
+"     <c-u>
+"     MAX_CONNECTIONS_ALLOWED|
+"                            ^
+"                            cursor
+"
+" It works by exiting out of insert mode, recording the current cursor location
+" in the z mark, using gUiw to uppercase inside the current word, moving back to
+" the z mark, and entering insert mode again.
+"
+" Note that this will overwrite the contents of the z mark.  I never use it, but
+" if you do you'll probably want to use another mark.
+inoremap <C-u> <esc>mzgUiw`za
+
+" Panic Button
+nnoremap <f9> mzggg?G`z
+
+" zt is okay for putting something at the top of the screen, but when I'm
+" writing prose I often want to put something at not-quite-the-top of the
+" screen.  zh is "zoom to head level"
+nnoremap zh mzzt10<c-u>`z
+
+" Diffoff
+nnoremap <leader>D :diffoff!<cr>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" Join an entire paragraph.
+"
+" Useful for writing GitHub comments in actual Markdown and then translating it
+" to their bastardized version of Markdown.
+nnoremap <leader>j mzvipJ`z
+
+" Split line (sister to [J]oin lines)
+" The normal use of S is covered by cc, so don't worry about shadowing it.
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+" Substitute
+nnoremap <c-s> :%s/
+vnoremap <c-s> :s/
+
+" HTML tag closing
+inoremap <C-_> <space><bs><esc>:call InsertCloseTag()<cr>a
+
+" Source
+vnoremap <leader>S y:@"<CR>
+nnoremap <leader>S ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
+
+" Select (charwise) the contents of the current line, excluding indentation.
+" Great for pasting Python lines into REPLs.
+nnoremap vv ^vg_
+
+" Typos
+command! -bang E e<bang>
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Wq wq<bang>
+command! -bang WQ wq<bang>
+
+" Open current directory in Finder
+nnoremap <leader>O :!ranger .<cr>
+
+" Zip Right
+"
+" Moves the character under the cursor to the end of the line.  Handy when you
+" have something like:
+"
+"     foo
+"
+" And you want to wrap it in a method call, so you type:
+"
+"     println()foo
+"
+" Once you hit escape your cursor is on the closing paren, so you can 'zip' it
+" over to the right with this mapping.
+"
+" This should preserve your last yank/delete as well.
+nnoremap zl :let @z=@"<cr>x$p:let @"=@z<cr>
+
+" Insert Mode Completion {{{
+" yet to try out on an actual situation
+inoremap <c-f> <c-x><c-f>
+inoremap <c-]> <c-x><c-]>
+inoremap <c-l> <c-x><c-l>
+
+" open current file in vsplit
+noremap <leader>v <C-w>v
+
+" Quick editing ----------------------------------------------------------- {{{
+
+nnoremap <leader>eg :vsplit ~/.gitconfig<cr>
+nnoremap <leader>eq :vsplit ~/Dropbox/quotes.txt<cr>Gzz
+nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
+nnoremap <leader>ev :vsplit ~/.vimrc<cr>
+
+" }}}
+
+" Searching and movement -------------------------------------------------- {{{
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Same when jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <c-o> <c-o>zz
+
+" Easier to type, and I never use the default behavior.
+noremap H ^
+noremap L $
+vnoremap L g_
+
+" Heresy
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+" }}}
+
+" color scheme
+colorscheme codedark
+if !has('nvim')       " does not work on neovim
+  set termguicolors   " enable true colors
+end
+" if !has('nvim')       " does not work on neovim
+"   set t_Co=256   " enable true colors
+"   hi! Normal ctermbg=NONE guibg=NONE
+"   hi! NonText ctermbg=NONE guibg=NONE
+" end
+

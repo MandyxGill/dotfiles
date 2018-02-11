@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -S https://koinex.in/api/ticker | jq "."
+curl -s https://koinex.in/api/ticker | jq "." > /tmp/koinex.json
